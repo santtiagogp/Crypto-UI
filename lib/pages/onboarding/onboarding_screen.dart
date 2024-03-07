@@ -110,7 +110,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 TextButton(
                   onPressed: () => controller!.animateToPage(
                     controller!.page!.toInt() + 1,
-                    duration: const Duration(milliseconds: 150),
+                    duration: const Duration(milliseconds: 185),
                     curve: Curves.ease
                   ),
                   style: ButtonStyle(
