@@ -11,8 +11,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   List<OnboardingItem> itemsList = [
     OnboardingItem(
-      title: 'title 1',
-      text: 'text 1'
+      title: 'Simplify your life with BTCash',
+      text: 'Spend, earn and track financial activity'
     ),
     OnboardingItem(
       title: 'title 2',
@@ -74,18 +74,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 SizedBox(
                   height: mq.height * 0.10,
                   child: PageView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
                     controller: controller,
                     itemCount: itemsList.length,
                     onPageChanged: (page) => changePage(page),
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
-                          Text(itemsList[index].title),
+                          Text(
+                            itemsList[index].title,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold
+                            ),
+                          ),
                           Text(itemsList[index].text),
                         ],
                       );
                     },
-                    physics: const ClampingScrollPhysics(),
                   ),
                 ),
                 Row(
@@ -100,6 +106,35 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       }
                     }
                   ),
+                ),
+                TextButton(
+                  onPressed: () => controller!.animateToPage(
+                    controller!.page!.toInt() + 1,
+                    duration: const Duration(milliseconds: 150),
+                    curve: Curves.ease
+                  ),
+                  style: ButtonStyle(
+                    splashFactory: NoSplash.splashFactory,
+                    overlayColor: MaterialStateProperty.all(Colors.transparent)
+                  ),
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 160,
+                      vertical: 20
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(25)
+                    ),
+                    child: const Text('Next',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20
+                      ),
+                    ),
+                  )
                 )
               ],
             ),
@@ -124,13 +159,14 @@ class PageIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
+      curve: Curves.ease,
       duration: const Duration(milliseconds: 150),
-      margin: const EdgeInsets.symmetric(horizontal: 5),
-      width: isCurrentItem ? 50 : 10,
-      height: 10,
+      margin: const EdgeInsets.symmetric(horizontal: 3),
+      width: isCurrentItem ? 40 : 8,
+      height: 8,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
-        color: isCurrentItem ? Colors.green : Colors.green[200],
+        color: isCurrentItem ? Colors.black : Colors.grey[300],
       ),
     );
   }
