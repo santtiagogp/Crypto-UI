@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:crypto_ui/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'models/onboarding_item.dart';
 import 'widgets/page_indicator_widget.dart';
@@ -12,6 +15,20 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+
+  startTime() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? firstTime = prefs.getBool('first_time');
+
+    const duration = Duration(seconds: 1);
+
+    if (firstTime != null && !firstTime) {
+      return Timer(duration, redirectToHome);
+    } else {
+      prefs.setBool('first_time', false);
+      return Timer(duration, redirectToOnboarding);
+    }
+  }
 
   List<OnboardingItem> itemsList = [
     OnboardingItem(
@@ -163,13 +180,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  void redirectToHome() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomePage()
-      )
-    );
-  }
+  void redirectToHome() => Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const HomePage()
+    )
+  );
+
+  void redirectToOnboarding() => Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (controller) => const OnboardingScreen()
+    )
+  );
 
 }
