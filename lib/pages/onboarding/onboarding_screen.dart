@@ -1,3 +1,4 @@
+import 'package:crypto_ui/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 import 'models/onboarding_item.dart';
@@ -56,9 +57,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           SafeArea(
             child: Align(
               alignment: Alignment.topRight,
-              child: TextButton(
-                onPressed: (){},
-                child: const Text('Skip', style: TextStyle(color: Colors.white),)
+              child: Visibility(
+                visible: isFinalPage ? false : true,
+                child: TextButton(
+                  onPressed: () => redirectToHome(),
+                  child: const Text(
+                    'Skip',
+                    style:
+                    TextStyle(color: Colors.white)
+                  )
+                ),
               ),
             ),
           ),
@@ -156,7 +164,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void redirectToHome() {
-    print('Time to go home!');
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const HomePage()
+      )
+    );
   }
 
 }
