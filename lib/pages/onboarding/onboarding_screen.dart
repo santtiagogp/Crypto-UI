@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'models/onboarding_item.dart';
+import 'widgets/page_indicator_widget.dart';
+
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -15,21 +18,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       text: 'Spend, earn and track financial activity'
     ),
     OnboardingItem(
-      title: 'title 2',
-      text: 'text 2'
+      title: 'Invest with confidence',
+      text: 'No losses at all, we got your back'
     ),
     OnboardingItem(
-      title: 'title 3',
-      text: 'text 3'
-    ),
-    OnboardingItem(
-      title: 'title 4',
-      text: 'text 4'
+      title: 'Easily purchase cryptocurrencies',
+      text: 'Use your debit, credit card or bank account'
     ),
   ];
 
   int currentPageValue = 0;
-  PageController? controller;
+  late PageController controller;
+  bool isFinalPage = false;
 
   @override
   void initState() {
@@ -49,8 +49,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           SizedBox(
             width: mq.width,
             child: const Image(
-              image: AssetImage('assets/bitcoin.jpg'),
-              fit: BoxFit.fill,
+              image: AssetImage('assets/bitcoin.jpeg'),
+              fit: BoxFit.cover,
             ),
           ),
           SafeArea(
@@ -58,14 +58,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               alignment: Alignment.topRight,
               child: TextButton(
                 onPressed: (){},
-                child: const Text('Skip', style: TextStyle(color: Colors.black),)
+                child: const Text('Skip', style: TextStyle(color: Colors.white),)
               ),
             ),
           ),
           Container(
-            height: mq.height * 0.40,
+            height: mq.height * 0.35,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Colors.grey[100],
               borderRadius: BorderRadius.circular(45)
             ),
             child: Column(
@@ -77,7 +77,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     physics: const NeverScrollableScrollPhysics(),
                     controller: controller,
                     itemCount: itemsList.length,
-                    onPageChanged: (page) => changePage(page),
+                    onPageChanged: (page) {
+                      changePage(page);
+                      page == 2 ? isFinalPage = true : isFinalPage = false;
+                    },
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
@@ -88,6 +91,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               fontWeight: FontWeight.bold
                             ),
                           ),
+                          const SizedBox(height: 10),
                           Text(itemsList[index].text),
                         ],
                       );
@@ -108,11 +112,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () => controller!.animateToPage(
-                    controller!.page!.toInt() + 1,
-                    duration: const Duration(milliseconds: 185),
-                    curve: Curves.ease
-                  ),
+                  onPressed: () => isFinalPage ? redirectToHome() : animatePage(),
                   style: ButtonStyle(
                     splashFactory: NoSplash.splashFactory,
                     overlayColor: MaterialStateProperty.all(Colors.transparent)
@@ -127,8 +127,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(25)
                     ),
-                    child: const Text('Next',
-                      style: TextStyle(
+                    child: Text(
+                      isFinalPage ? 'Go' : 'Next',
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 20
@@ -146,39 +147,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   void changePage(int page) => setState(() => currentPageValue = page);
 
-}
-
-class PageIndicator extends StatelessWidget {
-  const PageIndicator({
-    super.key,
-    required this.isCurrentItem
-  });
-
-  final bool isCurrentItem;
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      curve: Curves.ease,
-      duration: const Duration(milliseconds: 150),
-      margin: const EdgeInsets.symmetric(horizontal: 3),
-      width: isCurrentItem ? 40 : 8,
-      height: 8,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        color: isCurrentItem ? Colors.black : Colors.grey[300],
-      ),
+  void animatePage() {
+    controller.animateToPage(
+      controller.page!.toInt() + 1,
+      duration: const Duration(milliseconds: 185),
+      curve: Curves.ease
     );
   }
-}
 
-class OnboardingItem {
+  void redirectToHome() {
+    print('Time to go home!');
+  }
 
-  OnboardingItem({
-    required this.title,
-    required this.text
-  });
-  
-  final String title;
-  final String text;
 }
