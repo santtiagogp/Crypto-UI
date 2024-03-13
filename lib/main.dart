@@ -7,7 +7,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setBool('first_time', true);
-  print(prefs.getBool('first_time'));
   runApp(const CryptoApp());
 }
 
