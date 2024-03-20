@@ -91,7 +91,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             height: mq.height * 0.35,
             decoration: BoxDecoration(
               color: Colors.grey[100],
-              borderRadius: BorderRadius.circular(45)
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(45),
+                topRight: Radius.circular(45)
+              )
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
