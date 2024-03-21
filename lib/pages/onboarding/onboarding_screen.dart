@@ -1,11 +1,13 @@
 import 'dart:async';
 
-import 'package:crypto_ui/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../home/home_page.dart';
 import 'models/onboarding_item.dart';
+import 'widgets/page_button.dart';
 import 'widgets/page_indicator_widget.dart';
+import 'widgets/skip_button.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -20,7 +22,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? firstTime = prefs.getBool('first_time');
 
-    const duration = Duration(seconds: 1);
+    const duration = Duration(seconds: 0);
 
     if (firstTime != null && !firstTime) {
       return Timer(duration, redirectToHome);
@@ -61,115 +63,85 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     final mq = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          SizedBox(
-            width: mq.width,
-            child: const Image(
-              image: AssetImage('assets/bitcoin.jpeg'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          SafeArea(
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Visibility(
-                visible: isFinalPage ? false : true,
-                child: TextButton(
-                  onPressed: () => redirectToHome(),
-                  child: const Text(
-                    'Skip',
-                    style:
-                    TextStyle(color: Colors.white)
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage('assets/bitcoin.jpeg')
+          )
+        ),
+        child: SafeArea(
+          bottom: false,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const SkipButton(),
+              Container(
+                height: mq.height * 0.35,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)
                   )
                 ),
-              ),
-            ),
-          ),
-          Container(
-            height: mq.height * 0.35,
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(45),
-                topRight: Radius.circular(45)
-              )
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: mq.height * 0.10,
-                  child: PageView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    controller: controller,
-                    itemCount: itemsList.length,
-                    onPageChanged: (page) {
-                      changePage(page);
-                      page == 2 ? isFinalPage = true : isFinalPage = false;
-                    },
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Text(
-                            itemsList[index].title,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      height: mq.height * 0.10,
+                      child: PageView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        onPageChanged: (index) {
+                          changePage(index);
+                          index == 2 ? isFinalPage = true : isFinalPage = false;
+                        },
+                        controller: controller,
+                        itemCount: itemsList.length,
+                        itemBuilder: (context, index) => Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              itemsList[index].title,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(itemsList[index].text),
-                        ],
-                      );
-                    },
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    itemsList.length,
-                    (index) {
-                      if( index == currentPageValue) {
-                        return const PageIndicator(isCurrentItem: true);
-                      } else {
-                        return const PageIndicator(isCurrentItem: false);
-                      }
-                    }
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => isFinalPage ? redirectToHome() : animatePage(),
-                  style: ButtonStyle(
-                    splashFactory: NoSplash.splashFactory,
-                    overlayColor: MaterialStateProperty.all(Colors.transparent)
-                  ),
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 20),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 160,
-                      vertical: 20
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(25)
-                    ),
-                    child: Text(
-                      isFinalPage ? 'Go' : 'Next',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20
+                            Text(itemsList[index].text),
+                          ],
+                        )
                       ),
                     ),
-                  )
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        itemsList.length,
+                        (index) {
+                          if( index == currentPageValue) {
+                            return const PageIndicator(isCurrentItem: true);
+                          } else {
+                          return const PageIndicator(isCurrentItem: false);
+                          }
+                        }
+                      ),
+                    ),
+                    PageButton(
+                      onPressed: ()
+                        => isFinalPage
+                        ? redirectToHome()
+                        : animatePage(),
+                      width: mq.width * 0.8,
+                      height: mq.height * 0.08,
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        )
+      )
     );
   }
 

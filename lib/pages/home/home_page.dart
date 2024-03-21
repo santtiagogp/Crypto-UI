@@ -5,12 +5,6 @@ import 'widgets/home_search_bar.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  //35 37 35 light grey
-
-  //138 135 138 background
-
-  //167 223 138 green
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,8 +45,9 @@ class HomePage extends StatelessWidget {
               ),
           
               SizedBox(
-                height: 300,
+                height: 280,
                 child: GridView.count(
+                  physics: const NeverScrollableScrollPhysics(),
                   childAspectRatio: (1 / .75),
                   crossAxisCount: 2,
                   children: List.generate(
