@@ -7,114 +7,123 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(23, 23, 23, 1),
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(23, 23, 23, 1),
-        leading: const Icon(
-          Icons.menu,
-          color: Color.fromRGBO(138, 135, 138, 1)
-        ),
-        actions: const [
-          Icon(Icons.notifications, color: Color.fromRGBO(138, 135, 138, 1)),
-          SizedBox(width: 10,)
-        ],
+        leading: const Icon(Icons.menu, color: Colors.white),
+        actions: [
+          Container(
+            margin: const EdgeInsets.only(right: 10),
+            child: const Icon(Icons.notifications, color: Colors.white)
+          )
+        ]
       ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: SafeArea(
-          bottom: true,
-          top: true,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const HomeSearchBar(),
-          
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Trending', style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25
-                  )),
-                  Text('See more', style: TextStyle(
-                    color: Color.fromRGBO(167, 223, 138, 1)
-                  ))
-                ],
-              ),
-          
-              SizedBox(
-                height: 280,
-                child: GridView.count(
+      body: SafeArea(
+        bottom: true,
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 25),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const HomeSearchBar(),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 15),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Trending',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30
+                        ),
+                      ),
+                      Text(
+                        'See more',
+                        style: TextStyle(
+                          color: Color.fromRGBO(167, 223, 138, 1),
+                          fontSize: 15
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                GridView.count(
+                  childAspectRatio: (1 / .8),
                   physics: const NeverScrollableScrollPhysics(),
-                  childAspectRatio: (1 / .75),
+                  shrinkWrap: true,
                   crossAxisCount: 2,
                   children: List.generate(
-                    4, (index) => Container(
+                    4,
+                    (index) => Container(
                       margin: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(25),
                         color: const Color.fromRGBO(35, 37, 35, 1)
                       ),
                     )
                   ),
                 ),
-              ),
-          
-              const Text('Discover',
-                style: TextStyle(color: Colors.white, fontSize: 25)),
-          
-              SizedBox(
-                height: 30,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: List.generate(
-                    5,
-                    (index) => Container(
-                      width: 100,
-                      margin: const EdgeInsets.only(right: 7),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white
-                      ),
-                      child: const Center(
-                        child: Text('Recent', style: TextStyle(
-                          fontSize: 15
-                        ),),
-                      ),
-                    )
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 20),
+                  child: const Text('Discover', style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30
+                  )),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 25),
+                  height: 30,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: List.generate(
+                      5,
+                      (index) => Container(
+                        margin: const EdgeInsets.only(right: 5),
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: const Color.fromRGBO(35, 37, 35, 1),
+                            
+                          )
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Popular',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15
+                            ),
+                          )
+                        ),
+                      )
+                    ),
                   ),
                 ),
-              ),
-          
-              Container(
-                height: 80,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: const Color.fromRGBO(167, 223, 138, 1)
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  height: size.height * 0.1,
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(167, 223, 138, 1),
+                    borderRadius: BorderRadius.circular(25)
+                  ),
                 ),
-                child: const Row(
-                  children: [
-          
-                  ],
-                ),
-              ),
-          
-              Container(
-                height: 80,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: const Color.fromRGBO(167, 223, 138, 1)
-                ),
-                child: const Row(
-                  children: [
-          
-                  ],
-                ),
-              ),
-          
-            ],
+                Container(
+                  height: size.height * 0.1,
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(35, 37, 35, 1),
+                    borderRadius: BorderRadius.circular(25)
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
