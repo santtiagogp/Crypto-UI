@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../home/home_page.dart';
@@ -76,7 +77,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const SkipButton(),
+              Visibility(
+                visible: isFinalPage ? false : true,
+                child: const SkipButton()
+              ),
               Container(
                 height: mq.height * 0.35,
                 decoration: const BoxDecoration(
@@ -128,6 +132,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                     PageButton(
+                      buttonText: isFinalPage
+                        ? 'Go'
+                        : 'Next',
                       onPressed: ()
                         => isFinalPage
                         ? redirectToHome()

@@ -5,12 +5,14 @@ class PageButton extends StatelessWidget {
   final void Function() onPressed;
   final double width;
   final double height;
+  final String buttonText;
 
   const PageButton({
     super.key,
     required this.onPressed,
     required this.width,
-    required this.height
+    required this.height,
+    required this.buttonText
   });
 
   @override
@@ -27,10 +29,10 @@ class PageButton extends StatelessWidget {
           color: Colors.black,
           borderRadius: BorderRadius.circular(20)
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            'Next',
-            style: TextStyle(
+            buttonText,
+            style: const TextStyle(
               color: Colors.white,
             ),
           ),
