@@ -161,7 +161,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  void redirectToHome() => Navigator.push(
+  void redirectToHome() => Navigator.pushReplacement(
     context,
     MaterialPageRoute(
       builder: (context) => const HomePage()
