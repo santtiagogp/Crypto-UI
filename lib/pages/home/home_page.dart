@@ -1,3 +1,4 @@
+import 'package:crypto_ui/pages/home/widgets/home_trending.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/home_search_bar.dart';
@@ -55,19 +56,13 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 GridView.count(
-                  childAspectRatio: (1 / .8),
+                  childAspectRatio: (1 / .9),
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   crossAxisCount: 2,
                   children: List.generate(
                     4,
-                    (index) => Container(
-                      margin: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: const Color.fromRGBO(35, 37, 35, 1)
-                      ),
-                    )
+                    (index) => const TrendingBox()
                   ),
                 ),
                 Container(
