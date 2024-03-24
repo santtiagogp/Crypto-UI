@@ -78,7 +78,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               Visibility(
                 visible: isFinalPage ? false : true,
-                child: const SkipButton()
+                child: SkipButton(
+                  onPressed: () => redirectToHome(),
+                )
               ),
               Container(
                 height: mq.height * 0.35,
@@ -164,7 +166,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void redirectToHome() => Navigator.pushReplacement(
     context,
     MaterialPageRoute(
-      builder: (context) => const HomePage()
+      builder: (context) => HomePage()
     )
   );
 

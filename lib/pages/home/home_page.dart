@@ -1,10 +1,13 @@
-import 'package:crypto_ui/pages/home/widgets/home_trending.dart';
+import 'models/home_data.dart';
+import 'widgets/home_trending.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/home_search_bar.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  final HomeData data = HomeData();
 
   @override
   Widget build(BuildContext context) {
@@ -55,15 +58,22 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                GridView.count(
-                  childAspectRatio: (1 / .9),
-                  physics: const NeverScrollableScrollPhysics(),
+                GridView.builder(
                   shrinkWrap: true,
-                  crossAxisCount: 2,
-                  children: List.generate(
-                    4,
-                    (index) => const TrendingBox()
+                  itemCount: data.gridData.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: (1 / .8)
                   ),
+                  itemBuilder: (context, index) {
+                    return TrendingBox(
+                      imgPath: data.gridData[index].imgPath,
+                      title: data.gridData[index].currencyName,
+                      text: data.gridData[index].middleText,
+                      price: data.gridData[index].price,
+                      percentage: data.gridData[index].percentage,
+                    );
+                  }
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 20),

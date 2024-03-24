@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
 class TrendingBox extends StatelessWidget {
-  const TrendingBox({super.key});
+  const TrendingBox({
+    super.key,
+    required this.imgPath,
+    required this.title,
+    required this.text,
+    required this.price,
+    required this.percentage
+  });
+
+  final String imgPath;
+  final String title;
+  final String text;
+  final double price;
+  final double percentage;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +25,7 @@ class TrendingBox extends StatelessWidget {
         color: const Color.fromRGBO(35, 37, 35, 1),
       ),
       padding: const EdgeInsets.all(15),
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -22,17 +35,18 @@ class TrendingBox extends StatelessWidget {
               CircleAvatar(
                 radius: 15,
                 child: Image(
-                  image: AssetImage('assets/btc.png')
+                  image: AssetImage(imgPath)
                 ),
               ),
-              SizedBox(width: 10,),
-              Text('Bitcoin', style: TextStyle(
-                color: Colors.white
+              const SizedBox(width: 10,),
+              Text(title, style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18
               ),)
             ],
           ),
 
-          Text('1.41 Holders', style: TextStyle(
+          Text(text, style: const TextStyle(
             color: Colors.white,
             fontSize: 20
           ),),
@@ -40,17 +54,17 @@ class TrendingBox extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('90.0 USD', style: TextStyle(
+              Text('$price USD', style: const TextStyle(
                 color: Color.fromRGBO(111, 115, 111, 1)
               ),),
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.arrow_drop_up,
                     color: Color.fromRGBO(167, 223, 138, 1),
                     size: 20,
                   ),
-                  Text('12.44%', style: TextStyle(
+                  Text('$percentage%', style: const TextStyle(
                     color: Color.fromRGBO(167, 223, 138, 1)
                   ),),
                 ],
