@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         bottom: true,
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 25),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -59,11 +59,12 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: data.gridData.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: (1 / .8)
+                    childAspectRatio: (1 / .8),
                   ),
                   itemBuilder: (context, index) {
                     return TrendingBox(

@@ -55,17 +55,19 @@ class TrendingBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('$price USD', style: const TextStyle(
-                color: Color.fromRGBO(111, 115, 111, 1)
+                color: Color.fromRGBO(111, 115, 111, 1),
+                fontSize: 12
               ),),
               Row(
                 children: [
                   const Icon(
                     Icons.arrow_drop_up,
                     color: Color.fromRGBO(167, 223, 138, 1),
-                    size: 20,
+                    size: 18,
                   ),
                   Text('$percentage%', style: const TextStyle(
-                    color: Color.fromRGBO(167, 223, 138, 1)
+                    color: Color.fromRGBO(167, 223, 138, 1),
+                    fontSize: 12
                   ),),
                 ],
               )
