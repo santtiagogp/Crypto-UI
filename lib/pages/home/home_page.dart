@@ -1,8 +1,8 @@
-import 'models/home_data.dart';
-import 'widgets/home_trending.dart';
 import 'package:flutter/material.dart';
 
+import 'models/home_data.dart';
 import 'widgets/home_search_bar.dart';
+import 'widgets/home_trending.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -85,32 +85,21 @@ class HomePage extends StatelessWidget {
                 ),
                 Container(
                   margin: const EdgeInsets.only(bottom: 25),
-                  height: 30,
-                  child: ListView(
+                  height: 50,
+                  child: ListView.separated(
+                    physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
-                    children: List.generate(
-                      5,
-                      (index) => Container(
-                        margin: const EdgeInsets.only(right: 5),
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: const Color.fromRGBO(35, 37, 35, 1),
-                            
-                          )
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Popular',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15
-                            ),
-                          )
-                        ),
-                      )
+                    itemCount: 5,
+                    separatorBuilder: (context, index) => const SizedBox(
+                      width: 10,
                     ),
+                    itemBuilder: (context, index) => const Chip(
+                        label: Text('Popular', style: TextStyle(
+                          color: Colors.white
+                        ),),
+                        backgroundColor: Color.fromRGBO(35, 37, 35, 1),
+                        shape: StadiumBorder(),
+                      ),
                   ),
                 ),
                 Container(
