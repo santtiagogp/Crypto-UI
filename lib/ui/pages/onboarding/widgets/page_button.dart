@@ -17,6 +17,9 @@ class PageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+
     return TextButton(
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.all(Colors.transparent)
@@ -32,9 +35,7 @@ class PageButton extends StatelessWidget {
         child: Center(
           child: Text(
             buttonText,
-            style: const TextStyle(
-              color: Colors.white,
-            ),
+            style: theme.textTheme.displayMedium,
           ),
         ),
       )

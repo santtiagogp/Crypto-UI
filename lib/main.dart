@@ -1,6 +1,7 @@
+import 'package:crypto_ui/ui/theme/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'pages/onboarding/onboarding_screen.dart';
+import 'ui/pages/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -15,9 +16,11 @@ class CryptoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'BTCash',
       debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
+      theme: CryptoTheme.appTheme,
+      home: const OnboardingScreen(),
     );
   }
 }

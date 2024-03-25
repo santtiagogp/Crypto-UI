@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../home/home_page.dart';
-import 'models/onboarding_item.dart';
+import 'models/onboarding_data.dart';
 import 'widgets/page_button.dart';
 import 'widgets/page_indicator_widget.dart';
 import 'widgets/skip_button.dart';
@@ -32,20 +32,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     }
   }
 
-  List<OnboardingItem> itemsList = [
-    OnboardingItem(
-      title: 'Simplify your life with BTCash',
-      text: 'Spend, earn and track financial activity'
-    ),
-    OnboardingItem(
-      title: 'Invest with confidence',
-      text: 'No losses at all, we got your back'
-    ),
-    OnboardingItem(
-      title: 'Easily purchase cryptocurrencies',
-      text: 'Use your debit, credit card or bank account'
-    ),
-  ];
+  final data = OnboardingData.itemsList;
 
   int currentPageValue = 0;
   late PageController controller;
@@ -61,6 +48,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
 
     final mq = MediaQuery.of(context).size;
+
+    final theme = Theme.of(context);
 
     return Scaffold(
       body: Container(
@@ -103,18 +92,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           index == 2 ? isFinalPage = true : isFinalPage = false;
                         },
                         controller: controller,
-                        itemCount: itemsList.length,
+                        itemCount: data.length,
                         itemBuilder: (context, index) => Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              itemsList[index].title,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600
-                              ),
+                              data[index].title,
+                              style: theme.textTheme.displayLarge,
                             ),
-                            Text(itemsList[index].text),
+                            const SizedBox(height: 10),
+                            Text(
+                              data[index].text,
+                              style: theme.textTheme.bodyMedium,
+                            ),
                           ],
                         )
                       ),
@@ -122,7 +112,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
-                        itemsList.length,
+                        data.length,
                         (index) {
                           if( index == currentPageValue) {
                             return const PageIndicator(isCurrentItem: true);

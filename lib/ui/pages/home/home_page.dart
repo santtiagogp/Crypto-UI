@@ -14,10 +14,11 @@ class HomePage extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
 
+    final theme = Theme.of(context);
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(23, 23, 23, 1),
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(23, 23, 23, 1),
         leading: const Icon(Icons.menu, color: Colors.white),
         actions: [
           Container(
@@ -38,17 +39,14 @@ class HomePage extends StatelessWidget {
                 const HomeSearchBar(),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 15),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         'Trending',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30
-                        ),
+                        style: theme.textTheme.titleLarge,
                       ),
-                      Text(
+                      const Text(
                         'See more',
                         style: TextStyle(
                           color: Color.fromRGBO(167, 223, 138, 1),
@@ -78,10 +76,7 @@ class HomePage extends StatelessWidget {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 20),
-                  child: const Text('Discover', style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30
-                  )),
+                  child: Text('Discover', style: theme.textTheme.titleLarge),
                 ),
                 Container(
                   margin: const EdgeInsets.only(bottom: 25),

@@ -1,4 +1,4 @@
-import 'package:crypto_ui/pages/home/models/home_data_model.dart';
+import 'package:crypto_ui/ui/pages/home/models/home_data_model.dart';
 
 class HomeData {
 
