@@ -1,5 +1,4 @@
-import 'package:crypto_ui/ui/foundation/app_theme.dart';
-import 'package:crypto_ui/ui/foundation/crypto_texts.dart';
+import '../../../foundation/crypto_texts.dart';
 import 'package:flutter/material.dart';
 
 class PageButton extends StatelessWidget {
@@ -33,13 +32,27 @@ class PageButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(20)
         ),
         child: Center(
-          child: CryptoTexts.largeText(
-            buttonText,
-            color: Colors.white,
-            fontWeight: FontWeight.w600
-          ),
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            transitionBuilder: (child, animation) {
+              return FadeTransition(
+                opacity: Tween<double>(
+                  begin: 0,
+                  end: 1
+                ).animate(animation),
+                child: child,
+              );
+            },
+            child: CryptoTexts.largeText(
+              key: ValueKey<String>(buttonText),
+              buttonText,
+              color: Colors.white,
+              fontWeight: FontWeight.w600
+            ),
+          )
         ),
       )
     );
+    
   }
 }

@@ -4,12 +4,14 @@ class CryptoTheme {
 
   CryptoTheme._();
 
-  static const Color primaryColor = Color.fromRGBO(23, 23, 23, 1);
+  static const Color primaryColor = Color.fromRGBO(167, 223, 138, 1);
+
+  static const Color secondaryColor = Color.fromRGBO(23, 23, 23, 1);
 
   static final ThemeData appTheme = ThemeData(
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
-      primary: Color.fromRGBO(167, 223, 138, 1),
+      primary: primaryColor,
       onPrimary: Color.fromRGBO(0, 0, 0, 1),
       secondary: Colors.transparent,
       onSecondary: Colors.transparent,

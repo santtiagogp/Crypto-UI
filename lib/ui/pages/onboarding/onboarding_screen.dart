@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:crypto_ui/ui/foundation/app_theme.dart';
-import 'package:crypto_ui/ui/foundation/crypto_texts.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../foundation/app_theme.dart';
+import '../../foundation/crypto_texts.dart';
 import '../home/home_page.dart';
 import 'models/onboarding_data.dart';
 import 'widgets/page_button.dart';
@@ -103,12 +103,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             CryptoTexts.largeText(
                               data[index].title,
                               fontWeight: FontWeight.w600,
-                              color: CryptoTheme.primaryColor
+                              color: CryptoTheme.secondaryColor
                             ),
                             const SizedBox(height: 10),
                             CryptoTexts.mediumText(
                               data[index].text,
-                              color: CryptoTheme.primaryColor,
+                              color: CryptoTheme.secondaryColor,
                             ),
                           ],
                         )

@@ -1,6 +1,7 @@
-import 'package:crypto_ui/ui/foundation/crypto_texts.dart';
 import 'package:flutter/material.dart';
 
+import '../../foundation/app_theme.dart';
+import '../../foundation/crypto_texts.dart';
 import 'models/home_data.dart';
 import 'widgets/home_search_bar.dart';
 import 'widgets/home_trending.dart';
@@ -14,8 +15,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
-
-    final theme = Theme.of(context);
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(23, 23, 23, 1),
@@ -47,13 +46,10 @@ class HomePage extends StatelessWidget {
                         'Trending',
                         fontWeight: FontWeight.w400
                       ),
-                      const Text(
+                      CryptoTexts.mediumText(
                         'See more',
-                        style: TextStyle(
-                          color: Color.fromRGBO(167, 223, 138, 1),
-                          fontSize: 15
-                        ),
-                      )
+                        color: CryptoTheme.primaryColor
+                      ),
                     ],
                   ),
                 ),

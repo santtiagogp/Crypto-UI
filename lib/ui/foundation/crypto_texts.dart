@@ -31,8 +31,9 @@ class CryptoTexts {
 
   static Text largeText(
     String txt,
-    {Color? color, FontWeight? fontWeight}
+    {Color? color, FontWeight? fontWeight, Key? key}
   ) => Text(
+    key: key,
     txt,
     style: GoogleFonts.notoSansKhmer(
       fontWeight: fontWeight,

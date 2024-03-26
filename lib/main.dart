@@ -1,8 +1,8 @@
-import 'package:crypto_ui/ui/foundation/app_theme.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'ui/foundation/app_theme.dart';
 import 'ui/pages/onboarding/onboarding_screen.dart';
-import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
