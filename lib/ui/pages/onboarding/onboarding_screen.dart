@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:crypto_ui/ui/foundation/app_theme.dart';
 import 'package:crypto_ui/ui/foundation/crypto_texts.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../home/home_page.dart';
@@ -67,6 +66,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               IgnorePointer(
+                ignoring: isFinalPage ? true : false,
                 child: AnimatedOpacity(
                   opacity: isFinalPage ? 0 : 1,
                   duration: const Duration(milliseconds: 200),
