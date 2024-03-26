@@ -1,3 +1,5 @@
+import 'package:crypto_ui/ui/foundation/app_theme.dart';
+import 'package:crypto_ui/ui/foundation/crypto_texts.dart';
 import 'package:flutter/material.dart';
 
 class PageButton extends StatelessWidget {
@@ -18,8 +20,6 @@ class PageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final theme = Theme.of(context);
-
     return TextButton(
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.all(Colors.transparent)
@@ -33,9 +33,10 @@ class PageButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(20)
         ),
         child: Center(
-          child: Text(
+          child: CryptoTexts.largeText(
             buttonText,
-            style: theme.textTheme.displayMedium,
+            color: Colors.white,
+            fontWeight: FontWeight.w600
           ),
         ),
       )

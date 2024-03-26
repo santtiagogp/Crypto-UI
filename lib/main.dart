@@ -1,4 +1,4 @@
-import 'package:crypto_ui/ui/theme/app_theme.dart';
+import 'package:crypto_ui/ui/foundation/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'ui/pages/onboarding/onboarding_screen.dart';

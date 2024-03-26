@@ -1,3 +1,4 @@
+import 'package:crypto_ui/ui/foundation/crypto_texts.dart';
 import 'package:flutter/material.dart';
 
 import 'models/home_data.dart';
@@ -42,9 +43,9 @@ class HomePage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      CryptoTexts.largeHeading(
                         'Trending',
-                        style: theme.textTheme.titleLarge,
+                        fontWeight: FontWeight.w400
                       ),
                       const Text(
                         'See more',
@@ -76,7 +77,10 @@ class HomePage extends StatelessWidget {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 20),
-                  child: Text('Discover', style: theme.textTheme.titleLarge),
+                  child: CryptoTexts.largeHeading(
+                    'Discover',
+                    fontWeight: FontWeight.w400
+                  ),
                 ),
                 Container(
                   margin: const EdgeInsets.only(bottom: 25),

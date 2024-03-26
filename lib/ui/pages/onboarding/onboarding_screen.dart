@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:crypto_ui/ui/foundation/app_theme.dart';
+import 'package:crypto_ui/ui/foundation/crypto_texts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../home/home_page.dart';
@@ -49,8 +52,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
     final mq = MediaQuery.of(context).size;
 
-    final theme = Theme.of(context);
-
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -65,11 +66,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Visibility(
-                visible: isFinalPage ? false : true,
-                child: SkipButton(
-                  onPressed: () => redirectToHome(),
-                )
+              IgnorePointer(
+                child: AnimatedOpacity(
+                  opacity: isFinalPage ? 0 : 1,
+                  duration: const Duration(milliseconds: 200),
+                  child: SkipButton(
+                    onPressed: () => redirectToHome(),
+                  ),
+                ),
               ),
               Container(
                 height: mq.height * 0.35,
@@ -96,14 +100,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         itemBuilder: (context, index) => Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            CryptoTexts.largeText(
                               data[index].title,
-                              style: theme.textTheme.displayLarge,
+                              fontWeight: FontWeight.w600,
+                              color: CryptoTheme.primaryColor
                             ),
                             const SizedBox(height: 10),
-                            Text(
+                            CryptoTexts.mediumText(
                               data[index].text,
-                              style: theme.textTheme.bodyMedium,
+                              color: CryptoTheme.primaryColor,
                             ),
                           ],
                         )

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 class CryptoTheme {
 
+  CryptoTheme._();
+
+  static const Color primaryColor = Color.fromRGBO(23, 23, 23, 1);
+
   static final ThemeData appTheme = ThemeData(
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
@@ -21,26 +25,6 @@ class CryptoTheme {
     appBarTheme: const AppBarTheme(
       backgroundColor: Color.fromRGBO(23, 23, 23, 1),
       surfaceTintColor: Color.fromRGBO(23, 23, 23, 1)
-    ),
-    textTheme: const TextTheme(
-      titleLarge: TextStyle(
-        color: Colors.white,
-        fontSize: 30
-      ),
-      displayLarge: TextStyle(
-        color: Color.fromRGBO(23, 23, 23, 1),
-        fontSize: 25,
-        fontWeight: FontWeight.w700,
-      ),
-      displayMedium: TextStyle(
-        color: Colors.white,
-        fontSize: 20,
-        fontWeight: FontWeight.w700,
-      ),
-      bodyMedium: TextStyle(
-        color: Color.fromRGBO(23, 23, 23, 1),
-        fontWeight: FontWeight.w500
-      )
     ),
   );
 
