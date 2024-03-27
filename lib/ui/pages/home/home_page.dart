@@ -1,7 +1,6 @@
-import 'package:crypto_ui/ui/pages/home/widgets/discover_card.dart';
-import 'package:flutter/cupertino.dart';
+import 'widgets/discover_card.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../foundation/app_theme.dart';
 import '../../foundation/crypto_texts.dart';
@@ -16,8 +15,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(23, 23, 23, 1),
@@ -75,7 +72,7 @@ class HomePage extends StatelessWidget {
                   }
                 ),
                 Container(
-                  margin: const EdgeInsets.symmetric(vertical: 20),
+                  margin: const EdgeInsets.symmetric(vertical: 15),
                   child: CryptoTexts.largeHeading(
                     'Discover',
                     fontWeight: FontWeight.w400
@@ -87,19 +84,22 @@ class HomePage extends StatelessWidget {
                   child: ListView.separated(
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
-                    itemCount: 5,
+                    itemCount: data.discoverPills.length,
                     separatorBuilder: (context, index) => const SizedBox(
                       width: 10,
                     ),
-                    itemBuilder: (context, index) => const Chip(
-                        label: Text('Popular', style: TextStyle(
-                          color: Colors.white
+                    itemBuilder: (context, index) => Chip(
+                        label: Text(data.discoverPills[index],
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 15
                         ),),
-                        backgroundColor: Color.fromRGBO(35, 37, 35, 1),
-                        shape: StadiumBorder(),
+                        backgroundColor: const Color.fromRGBO(35, 37, 35, 1),
+                        shape: const StadiumBorder(),
                       ),
                   ),
                 ),
+                const SizedBox(height: 10,),
                 SizedBox(
                   height: 250,
                   child: ListView.builder(
@@ -108,7 +108,7 @@ class HomePage extends StatelessWidget {
                       return DiscoverCard(
                         title: data.discoverData[index].currencyName,
                         symbol: data.discoverData[index].symbol.toString(),
-                        price: data.discoverData[index].price.toString(),
+                        price: r'$'+data.discoverData[index].price.toString(),
                         imagePath: data.discoverData[index].imgPath
                       );
                     }

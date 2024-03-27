@@ -51,5 +51,13 @@ class HomeData {
     ),
   ];
 
+  List<String> discoverPills = [
+    'Popular',
+    'Recent',
+    'Favorite',
+    'New',
+    'Increasing'
+  ];
+
 
 }
