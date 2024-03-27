@@ -1,4 +1,7 @@
+import 'package:crypto_ui/ui/pages/home/widgets/discover_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../foundation/app_theme.dart';
 import '../../foundation/crypto_texts.dart';
@@ -65,7 +68,7 @@ class HomePage extends StatelessWidget {
                     return TrendingBox(
                       imgPath: data.gridData[index].imgPath,
                       title: data.gridData[index].currencyName,
-                      text: data.gridData[index].middleText,
+                      text: data.gridData[index].middleText.toString(),
                       price: data.gridData[index].price,
                       percentage: data.gridData[index].percentage,
                     );
@@ -97,19 +100,18 @@ class HomePage extends StatelessWidget {
                       ),
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  height: size.height * 0.1,
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(167, 223, 138, 1),
-                    borderRadius: BorderRadius.circular(25)
-                  ),
-                ),
-                Container(
-                  height: size.height * 0.1,
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(35, 37, 35, 1),
-                    borderRadius: BorderRadius.circular(25)
+                SizedBox(
+                  height: 250,
+                  child: ListView.builder(
+                    itemCount: data.discoverData.length,
+                    itemBuilder: (context, index) {
+                      return DiscoverCard(
+                        title: data.discoverData[index].currencyName,
+                        symbol: data.discoverData[index].symbol.toString(),
+                        price: data.discoverData[index].price.toString(),
+                        imagePath: data.discoverData[index].imgPath
+                      );
+                    }
                   ),
                 )
               ],

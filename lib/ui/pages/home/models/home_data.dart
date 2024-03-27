@@ -33,4 +33,23 @@ class HomeData {
     )
   ];
 
+
+  List<HomeDataModel> discoverData = [
+    HomeDataModel(
+      currencyName: 'LiteCoin', 
+      percentage: 1.52,
+      imgPath: 'assets/litecoin.png',
+      price: 722.14,
+      symbol: 'LTC'
+    ),
+    HomeDataModel(
+      currencyName: 'Stellar', 
+      percentage: 1.52,
+      imgPath: 'assets/stellar.png',
+      price: 722.14,
+      symbol: 'XLM'
+    ),
+  ];
+
+
 }

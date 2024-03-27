@@ -5,11 +5,13 @@ class HomeDataModel {
     required this.percentage,
     required this.imgPath,
     required this.price,
-    required this.middleText
+    this.middleText,
+    this.symbol
   });
 
   final String currencyName;
-  final String middleText;
+  final String? middleText;
+  final String? symbol;
   final double price;
   final String imgPath;
   final double percentage;
