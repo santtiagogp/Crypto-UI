@@ -7,7 +7,8 @@ class TrendingBox extends StatefulWidget {
     required this.title,
     required this.text,
     required this.price,
-    required this.percentage
+    required this.percentage,
+    this.onTap
   });
 
   final String imgPath;
@@ -15,6 +16,7 @@ class TrendingBox extends StatefulWidget {
   final String text;
   final double price;
   final double percentage;
+  final VoidCallback? onTap;
 
   @override
   State<TrendingBox> createState() => _TrendingBoxState();
@@ -52,13 +54,22 @@ class _TrendingBoxState extends State<TrendingBox>
       builder: (context, child) {
         return Transform.translate(
           offset: slide.value,
-          child: TrendingCardUI(
-            widget: widget,
+          child: GestureDetector(
+            onTap: widget.onTap,
+            child: TrendingCardUI(
+              widget: widget,
+            ),
           ),
         );
       }
     );
 
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }
 

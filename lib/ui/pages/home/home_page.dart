@@ -1,4 +1,6 @@
-import 'widgets/discover_card.dart';
+import 'package:crypto_ui/ui/pages/currency_overview/currency_overview_page.dart';
+
+import '../../widgets/discover_card.dart';
 
 import 'package:flutter/material.dart';
 
@@ -63,6 +65,12 @@ class HomePage extends StatelessWidget {
                   ),
                   itemBuilder: (context, index) {
                     return TrendingBox(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CurrencyOverview()
+                        )
+                      ),
                       imgPath: data.gridData[index].imgPath,
                       title: data.gridData[index].currencyName,
                       text: data.gridData[index].middleText.toString(),

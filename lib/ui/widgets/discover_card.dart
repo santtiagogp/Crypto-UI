@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../foundation/app_theme.dart';
+import '../foundation/app_theme.dart';
 
 class DiscoverCard extends StatefulWidget {
 
@@ -64,6 +64,13 @@ class _DiscoverCardState extends State<DiscoverCard>
       }
     );
   }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
 }
 
 class DiscoverCardUI extends StatelessWidget {
@@ -80,7 +87,9 @@ class DiscoverCardUI extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       decoration: BoxDecoration(
-        color: CryptoTheme.primaryColor,
+        color: widget.cardIndex > 0
+          ? const Color.fromRGBO(35, 37, 35, 1)
+          : CryptoTheme.primaryColor,
         borderRadius: BorderRadius.circular(25),
       ),
       child: Row(
@@ -88,6 +97,7 @@ class DiscoverCardUI extends StatelessWidget {
           Row(
             children: [
               CircleAvatar(
+                backgroundColor: Colors.transparent,
                 radius: 25,
                 backgroundImage: AssetImage(widget.imagePath)
               ),
@@ -96,12 +106,19 @@ class DiscoverCardUI extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.title, style: const TextStyle(
-                    color: Colors.black,
+                  Text(widget.title, style: TextStyle(
+                    color: widget.cardIndex > 0
+                      ? Colors.white
+                      : Colors.black,
                     fontSize: 16,
                     fontWeight: FontWeight.w600
                   )),
-                  Text(widget.symbol, style: const TextStyle(color: Colors.black))
+                  Text(
+                    widget.symbol,
+                    style: TextStyle(color: widget.cardIndex > 0
+                      ? Colors.white
+                      : Colors.black)
+                  )
                 ]
               )
             ]
@@ -111,17 +128,26 @@ class DiscoverCardUI extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(widget.price, style: const TextStyle(
-                  color: Colors.black,
+                Text(widget.price, style: TextStyle(
+                  color: widget.cardIndex > 0
+                    ? Colors.white
+                    : Colors.black,
                   fontSize: 18,
                   fontWeight: FontWeight.w600
                 )),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Icon(Icons.arrow_drop_up_outlined, color: Colors.black),
+                    Icon(
+                      Icons.arrow_drop_up_outlined,
+                      color: widget.cardIndex > 0
+                      ? Colors.white
+                      : Colors.black
+                    ),
                     Text('75.73 (1.52%)', style: TextStyle(
-                      color: Colors.black
+                      color: widget.cardIndex > 0
+                      ? Colors.white
+                      : Colors.black
                     ))
                   ]
                 )
