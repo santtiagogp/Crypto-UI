@@ -33,7 +33,7 @@ class _DiscoverCardState extends State<DiscoverCard>
   void initState() {
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 600),
     );
 
     slide = Tween<Offset>(
