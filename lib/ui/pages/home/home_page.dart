@@ -106,6 +106,7 @@ class HomePage extends StatelessWidget {
                     itemCount: data.discoverData.length,
                     itemBuilder: (context, index) {
                       return DiscoverCard(
+                        cardIndex: index,
                         title: data.discoverData[index].currencyName,
                         symbol: data.discoverData[index].symbol.toString(),
                         price: r'$'+data.discoverData[index].price.toString(),

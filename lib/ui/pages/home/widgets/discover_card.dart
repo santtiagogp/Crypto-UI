@@ -9,13 +9,15 @@ class DiscoverCard extends StatefulWidget {
     required this.title,
     required this.symbol,
     required this.price,
-    required this.imagePath
+    required this.imagePath,
+    required this.cardIndex
   });
 
   final String title;
   final String symbol;
   final String imagePath;
   final String price;
+  final int cardIndex;
 
   @override
   State<DiscoverCard> createState() => _DiscoverCardState();
@@ -31,15 +33,15 @@ class _DiscoverCardState extends State<DiscoverCard>
   void initState() {
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(seconds: 1),
     );
 
     slide = Tween<Offset>(
-      begin: const Offset(150.0, 0.0),
+      begin: Offset(widget.cardIndex % 2 == 0 ? 400 : -400, 0.0),
       end: const Offset(0.0, 0.0)
     ).animate(CurvedAnimation(
       parent: controller,
-      curve: Curves.ease
+      curve: Curves.easeInOutQuart
     ));
 
     super.initState();
