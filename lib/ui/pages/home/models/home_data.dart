@@ -7,7 +7,7 @@ class HomeData {
       currencyName: 'Bitcoin',
       percentage: 12.44,
       imgPath: 'assets/btc.png',
-      price: 70076,
+      price: 7007,
       symbol: 'BTC',
       middleText: '1.41 Holders'
     ),

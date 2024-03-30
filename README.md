@@ -1,16 +1,18 @@
-# crypto_ui
+# Crypto UI
 
-A new Flutter project.
+- Disclaimer: This app is not functional, its only purpose is show a beautiful UI along with smooth animations.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+It's highly recommended to run this app with the new Flutter's engine: Impeller.
+To do so, run:
 
-A few resources to get you started if this is your first Flutter project:
+`flutter run --enable-impeller`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Keep in mind, impeller is enabled on iOS by default
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This UI was not made by me, the inspo was gotten from:
+
+- [Crypto Exchange App](https://dribbble.com/shots/23146109-Crypto-Exchange-App)
+
+![]()

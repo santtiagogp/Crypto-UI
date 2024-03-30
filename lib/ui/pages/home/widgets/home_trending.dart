@@ -89,7 +89,7 @@ class TrendingCardUI extends StatelessWidget {
         borderRadius: BorderRadius.circular(25),
         color: const Color.fromRGBO(35, 37, 35, 1),
       ),
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -119,20 +119,20 @@ class TrendingCardUI extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('${widget.price} USD', style: const TextStyle(
+              Text('\$${widget.price} USD', style: const TextStyle(
                 color: Color.fromRGBO(111, 115, 111, 1),
-                fontSize: 12
+                fontSize: 12,
               ),),
               Row(
                 children: [
                   const Icon(
                     Icons.arrow_drop_up,
                     color: Color.fromRGBO(167, 223, 138, 1),
-                    size: 18,
+                    size: 13,
                   ),
                   Text('${widget.percentage}%', style: const TextStyle(
                     color: Color.fromRGBO(167, 223, 138, 1),
-                    fontSize: 12
+                    fontSize: 10,
                   ),),
                 ],
               )
