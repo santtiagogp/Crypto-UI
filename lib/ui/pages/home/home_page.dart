@@ -1,8 +1,8 @@
-import 'package:crypto_ui/ui/widgets/crypto_chip.dart';
 import 'package:flutter/material.dart';
 
 import '../../foundation/app_theme.dart';
 import '../../foundation/crypto_texts.dart';
+import '../../widgets/crypto_chip.dart';
 import '../../widgets/discover_card.dart';
 import '../currency_overview/currency_overview_page.dart';
 import 'models/home_data.dart';
@@ -111,7 +111,12 @@ class HomePage extends StatelessWidget {
                         title: data.discoverData[index].currencyName,
                         symbol: data.discoverData[index].symbol.toString(),
                         price: r'$'+data.discoverData[index].price.toString(),
-                        image: Image.asset(data.discoverData[index].imgPath),
+                        image: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.asset(
+                            data.discoverData[index].imgPath,
+                          ),
+                        ),
                       );
                     }
                   ),

@@ -6,11 +6,11 @@ class PageButton extends StatelessWidget {
   final void Function() onPressed;
   final String buttonText;
   final Color textColor;
-  Color? color;
-  double? width;
-  double? height;
+  final Color? color;
+  final double? width;
+  final double? height;
 
-  PageButton({
+  const PageButton({
     super.key,
     required this.onPressed,
     required this.buttonText,
