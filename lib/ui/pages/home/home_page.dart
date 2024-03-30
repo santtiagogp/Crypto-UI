@@ -114,6 +114,14 @@ class HomePage extends StatelessWidget {
                         = List.from(data.cryptoData.skip(4));
 
                       return DiscoverCard(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CurrencyOverview(
+                              data: discoverList[index]
+                            )
+                          )
+                        ),
                         cardIndex: index,
                         title: discoverList[index].currencyName,
                         symbol: discoverList[index].symbol.toString(),

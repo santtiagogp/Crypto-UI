@@ -10,7 +10,8 @@ class DiscoverCard extends StatefulWidget {
     required this.symbol,
     required this.price,
     required this.image,
-    required this.cardIndex
+    required this.cardIndex,
+    this.onTap
   });
 
   final String title;
@@ -18,6 +19,7 @@ class DiscoverCard extends StatefulWidget {
   final Widget image;
   final String price;
   final int cardIndex;
+  final void Function()? onTap;
 
   @override
   State<DiscoverCard> createState() => _DiscoverCardState();
@@ -57,8 +59,11 @@ class _DiscoverCardState extends State<DiscoverCard>
       builder: (context, child) {
         return Transform.translate(
           offset: slide.value,
-          child: DiscoverCardUI(
-            widget: widget
+          child: GestureDetector(
+            onTap: widget.onTap,
+            child: DiscoverCardUI(
+              widget: widget
+            ),
           ),
         );
       }

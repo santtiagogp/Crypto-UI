@@ -82,7 +82,10 @@ class CurrencyOverview extends StatelessWidget {
               title: data.currencyName,
               symbol: data.symbol.toString(),
               price: '\$${data.price.toString()}',
-              image: Image.asset(data.imgPath),
+              image: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.asset(data.imgPath)
+              ),
               cardIndex: 2,
             ),
           ),
