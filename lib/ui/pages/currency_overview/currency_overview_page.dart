@@ -4,10 +4,17 @@ import '../../foundation/app_theme.dart';
 import '../../widgets/crypto_chip.dart';
 import '../../widgets/discover_card.dart';
 import '../../widgets/page_button.dart';
+import '../home/models/home_data_model.dart';
 import 'widgets/home_chart.dart';
 
 class CurrencyOverview extends StatelessWidget {
-  const CurrencyOverview({super.key});
+  
+  const CurrencyOverview({
+    super.key,
+    required this.data
+  });
+
+  final HomeDataModel data;
 
   @override
   Widget build(BuildContext context) {
@@ -31,23 +38,24 @@ class CurrencyOverview extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Row(
               children: [
-                Icon(Icons.arrow_drop_up),
-                Text('20.23 (1.51%)', style: TextStyle(
+                const Icon(Icons.arrow_drop_up),
+                Text('(${data.percentage}%)', style: const TextStyle(
                   fontSize: 15
                 ),),
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(r'DEE 1 = $1,214.20', style: TextStyle(
-              fontSize: 25,
-              letterSpacing: -1,
-              fontWeight: FontWeight.w500
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Text('${data.symbol} 1 = \$${data.price}',
+              style: const TextStyle(
+                fontSize: 25,
+                letterSpacing: -1,
+                fontWeight: FontWeight.w500
             ),),
           ),
           Padding(
@@ -71,10 +79,10 @@ class CurrencyOverview extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: DiscoverCard(
-              title: 'Bitcoin',
-              symbol: 'BTC',
-              price: '2133',
-              image: Image.asset('assets/btc.png'),
+              title: data.currencyName,
+              symbol: data.symbol.toString(),
+              price: '\$${data.price.toString()}',
+              image: Image.asset(data.imgPath),
               cardIndex: 2,
             ),
           ),

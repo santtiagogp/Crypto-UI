@@ -5,9 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../foundation/app_theme.dart';
 import '../../foundation/crypto_texts.dart';
+import '../../widgets/page_button.dart';
 import '../home/home_page.dart';
 import 'models/onboarding_data.dart';
-import '../../widgets/page_button.dart';
 import 'widgets/page_indicator_widget.dart';
 import 'widgets/skip_button.dart';
 

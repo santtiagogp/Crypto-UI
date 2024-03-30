@@ -6,6 +6,7 @@ import '../../widgets/crypto_chip.dart';
 import '../../widgets/discover_card.dart';
 import '../currency_overview/currency_overview_page.dart';
 import 'models/home_data.dart';
+import 'models/home_data_model.dart';
 import 'widgets/home_search_bar.dart';
 import 'widgets/home_trending.dart';
 
@@ -57,7 +58,7 @@ class HomePage extends StatelessWidget {
                 GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: data.gridData.length,
+                  itemCount: 4,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: (1 / .8),
@@ -67,14 +68,16 @@ class HomePage extends StatelessWidget {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const CurrencyOverview()
+                          builder: (context) => CurrencyOverview(
+                            data: data.cryptoData[index],
+                          )
                         )
                       ),
-                      image: AssetImage(data.gridData[index].imgPath),
-                      title: data.gridData[index].currencyName,
-                      text: data.gridData[index].middleText.toString(),
-                      price: data.gridData[index].price,
-                      percentage: data.gridData[index].percentage,
+                      image: AssetImage(data.cryptoData[index].imgPath),
+                      title: data.cryptoData[index].currencyName,
+                      text: data.cryptoData[index].middleText.toString(),
+                      price: data.cryptoData[index].price,
+                      percentage: data.cryptoData[index].percentage,
                     );
                   }
                 ),
@@ -104,17 +107,21 @@ class HomePage extends StatelessWidget {
                 SizedBox(
                   height: 250,
                   child: ListView.builder(
-                    itemCount: data.discoverData.length,
+                    itemCount: 2,
                     itemBuilder: (context, index) {
+
+                      List<HomeDataModel> discoverList
+                        = List.from(data.cryptoData.skip(4));
+
                       return DiscoverCard(
                         cardIndex: index,
-                        title: data.discoverData[index].currencyName,
-                        symbol: data.discoverData[index].symbol.toString(),
-                        price: r'$'+data.discoverData[index].price.toString(),
+                        title: discoverList[index].currencyName,
+                        symbol: discoverList[index].symbol.toString(),
+                        price: r'$'+discoverList[index].price.toString(),
                         image: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Image.asset(
-                            data.discoverData[index].imgPath,
+                            discoverList[index].imgPath,
                           ),
                         ),
                       );
