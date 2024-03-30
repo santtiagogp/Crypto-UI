@@ -9,13 +9,13 @@ class DiscoverCard extends StatefulWidget {
     required this.title,
     required this.symbol,
     required this.price,
-    required this.imagePath,
+    required this.image,
     required this.cardIndex
   });
 
   final String title;
   final String symbol;
-  final String imagePath;
+  final Widget image;
   final String price;
   final int cardIndex;
 
@@ -99,7 +99,7 @@ class DiscoverCardUI extends StatelessWidget {
               CircleAvatar(
                 backgroundColor: Colors.transparent,
                 radius: 25,
-                backgroundImage: AssetImage(widget.imagePath)
+                child: widget.image,
               ),
               const SizedBox(width: 10),
               Column(

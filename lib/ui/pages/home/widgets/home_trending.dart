@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TrendingBox extends StatefulWidget {
   const TrendingBox({
     super.key,
-    required this.imgPath,
+    required this.image,
     required this.title,
     required this.text,
     required this.price,
@@ -11,7 +11,7 @@ class TrendingBox extends StatefulWidget {
     this.onTap
   });
 
-  final String imgPath;
+  final ImageProvider<Object> image;
   final String title;
   final String text;
   final double price;
@@ -100,7 +100,7 @@ class TrendingCardUI extends StatelessWidget {
               CircleAvatar(
                 radius: 15,
                 child: Image(
-                  image: AssetImage(widget.imgPath)
+                  image: widget.image
                 ),
               ),
               const SizedBox(width: 10,),

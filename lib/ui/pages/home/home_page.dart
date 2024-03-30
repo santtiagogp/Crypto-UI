@@ -1,11 +1,10 @@
-import 'package:crypto_ui/ui/pages/currency_overview/currency_overview_page.dart';
-
-import '../../widgets/discover_card.dart';
-
+import 'package:crypto_ui/ui/widgets/crypto_chip.dart';
 import 'package:flutter/material.dart';
 
 import '../../foundation/app_theme.dart';
 import '../../foundation/crypto_texts.dart';
+import '../../widgets/discover_card.dart';
+import '../currency_overview/currency_overview_page.dart';
 import 'models/home_data.dart';
 import 'widgets/home_search_bar.dart';
 import 'widgets/home_trending.dart';
@@ -71,7 +70,7 @@ class HomePage extends StatelessWidget {
                           builder: (context) => const CurrencyOverview()
                         )
                       ),
-                      imgPath: data.gridData[index].imgPath,
+                      image: AssetImage(data.gridData[index].imgPath),
                       title: data.gridData[index].currencyName,
                       text: data.gridData[index].middleText.toString(),
                       price: data.gridData[index].price,
@@ -96,15 +95,9 @@ class HomePage extends StatelessWidget {
                     separatorBuilder: (context, index) => const SizedBox(
                       width: 10,
                     ),
-                    itemBuilder: (context, index) => Chip(
-                        label: Text(data.discoverPills[index],
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 15
-                        ),),
-                        backgroundColor: const Color.fromRGBO(35, 37, 35, 1),
-                        shape: const StadiumBorder(),
-                      ),
+                    itemBuilder: (context, index) => CryptoChip(
+                      text: data.discoverPills[index]
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10,),
@@ -118,7 +111,7 @@ class HomePage extends StatelessWidget {
                         title: data.discoverData[index].currencyName,
                         symbol: data.discoverData[index].symbol.toString(),
                         price: r'$'+data.discoverData[index].price.toString(),
-                        imagePath: data.discoverData[index].imgPath
+                        image: Image.asset(data.discoverData[index].imgPath),
                       );
                     }
                   ),

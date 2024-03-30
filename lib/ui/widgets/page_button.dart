@@ -1,19 +1,23 @@
-import '../../../foundation/crypto_texts.dart';
+import '../foundation/crypto_texts.dart';
 import 'package:flutter/material.dart';
 
 class PageButton extends StatelessWidget {
 
   final void Function() onPressed;
-  final double width;
-  final double height;
   final String buttonText;
+  final Color textColor;
+  Color? color;
+  double? width;
+  double? height;
 
-  const PageButton({
+  PageButton({
     super.key,
     required this.onPressed,
-    required this.width,
-    required this.height,
-    required this.buttonText
+    required this.buttonText,
+    required this.textColor,
+    this.width,
+    this.height,
+    this.color
   });
 
   @override
@@ -28,7 +32,7 @@ class PageButton extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: color,
           borderRadius: BorderRadius.circular(20)
         ),
         child: Center(
@@ -46,7 +50,7 @@ class PageButton extends StatelessWidget {
             child: CryptoTexts.largeText(
               key: ValueKey<String>(buttonText),
               buttonText,
-              color: Colors.white,
+              color: textColor,
               fontWeight: FontWeight.w600
             ),
           )
