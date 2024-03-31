@@ -7,6 +7,7 @@ import '../../widgets/discover_card.dart';
 import '../currency_overview/currency_overview_page.dart';
 import 'models/home_data.dart';
 import 'models/home_data_model.dart';
+import 'widgets/dismissible_page.dart';
 import 'widgets/home_search_bar.dart';
 import 'widgets/home_trending.dart';
 
@@ -21,7 +22,20 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(23, 23, 23, 1),
       appBar: AppBar(
-        leading: const Icon(Icons.menu, color: Colors.white),
+        leading: IconButton(
+          icon: const Icon(Icons.menu, color: Colors.white),
+          onPressed: () => showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) => const Dialog(
+              backgroundColor: Colors.transparent,
+              surfaceTintColor: Colors.transparent,
+              alignment: Alignment.bottomCenter,
+              insetPadding: EdgeInsets.all(0),
+              child: DismissiblePage(),
+            ),
+          ),
+        ),
         actions: [
           Container(
             margin: const EdgeInsets.only(right: 10),
