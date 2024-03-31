@@ -61,5 +61,13 @@ class HomeData {
     'Increasing'
   ];
 
+  List<String> chartPills = [
+    '24h',
+    'Week',
+    'Month',
+    '6 Months',
+    'Year'
+  ];
+
 
 }

@@ -4,6 +4,7 @@ import '../../foundation/app_theme.dart';
 import '../../widgets/crypto_chip.dart';
 import '../../widgets/discover_card.dart';
 import '../../widgets/page_button.dart';
+import '../home/models/home_data.dart';
 import '../home/models/home_data_model.dart';
 import 'widgets/home_chart.dart';
 
@@ -18,6 +19,8 @@ class CurrencyOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final HomeData overviewData = HomeData();
 
     final size = MediaQuery.of(context).size;
 
@@ -64,7 +67,8 @@ class CurrencyOverview extends StatelessWidget {
               height: 40,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => const CryptoChip(text: 'Week'),
+                itemBuilder: (context, index) =>
+                  CryptoChip(text: overviewData.chartPills[index]),
                 separatorBuilder: (context, index) => const SizedBox(
                   width: 10,
                 ),
