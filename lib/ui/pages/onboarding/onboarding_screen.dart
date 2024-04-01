@@ -24,9 +24,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? firstTime = prefs.getBool('first_time');
 
-    const duration = Duration(seconds: 0);
+    const duration = Duration.zero;
 
-    if (firstTime != null && !firstTime) {
+    if (firstTime != null && firstTime == false) {
       return Timer(duration, redirectToHome);
     } else {
       prefs.setBool('first_time', false);
@@ -42,8 +42,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   void initState() {
-    super.initState();
     controller = PageController(initialPage: currentPageValue);
+    super.initState();
   }
 
   @override

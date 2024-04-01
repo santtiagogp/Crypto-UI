@@ -4,7 +4,8 @@
 
 ## Getting Started
 
-It's highly recommended to run this app with the new Flutter's engine: Impeller.
+It's highly recommended to run this app with Flutter's new engine: Impeller.
+
 To do so, run:
 
 `flutter run --enable-impeller`

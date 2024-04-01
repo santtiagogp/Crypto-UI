@@ -7,7 +7,7 @@ import 'ui/pages/onboarding/onboarding_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.setBool('first_time', true);
+  await prefs.setBool('first_time', false);
   runApp(const CryptoApp());
 }
 
