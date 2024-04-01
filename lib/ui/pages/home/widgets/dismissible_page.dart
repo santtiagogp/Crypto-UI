@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../../foundation/app_theme.dart';
 
@@ -20,13 +22,68 @@ class DismissiblePage extends StatelessWidget {
           borderRadius: BorderRadius.circular(30)
         ),
         height: size.height * 0.7,
-        child: const Column(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _Bar(),
-            Text('Your account'),
-            Placeholder()
+            const _Bar(),
+            const Text('Your account', style: TextStyle(
+              fontSize: 18
+            ),),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image(
+                image: const AssetImage('assets/qr.png'),
+                height: size.height * 0.4,
+              ),
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _DismissibleButton(
+                  text: 'Copy',
+                  icon: Icon(Icons.copy),
+                ),
+                SizedBox(width: 50),
+                _DismissibleButton(
+                  text: 'Share',
+                  icon: Icon(Icons.ios_share),
+                ),
+              ],
+            )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _DismissibleButton extends StatelessWidget {
+  const _DismissibleButton({
+    required this.text,
+    required this.icon
+  });
+
+  final String text;
+  final Icon icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 50),
+      child: Column(
+        children: [
+          Container(
+            height: 80,
+            width: 80,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Color.fromRGBO(35, 37, 35, 1)
+            ),
+            child: icon
+          ),
+          const SizedBox(height: 10,),
+          Text(text)
+        ],
       ),
     );
   }
